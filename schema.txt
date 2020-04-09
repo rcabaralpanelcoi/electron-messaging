@@ -1,0 +1,9 @@
+Users
+	: _id
+	: name
+
+Messages
+	: _id
+	: from
+	: to
+	: message
