@@ -4,6 +4,26 @@ Users
 
 Messages
 	: _id
-	: from
-	: to
+	: from {User}
+	: to {User}
 	: message
+	: files => []
+		: from {User}
+		: b64 => String
+		: type => image, video, docx, pdf
+	: seened_by {User}
+	: delivered_to {User}
+	: opened_by {User}
+	: deleted_by {User}
+
+Groups
+	: _id
+	: name
+	: members => []
+	: created_by {User}
+	: avatar
+
+Screenshots
+	: _id
+	: user {User}
+	: 

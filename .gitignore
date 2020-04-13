@@ -4,7 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
-Messages-linux-x64/*
+Messages-linux-x64
+messages-win32-x64
+screenshots
+package-lock.json
 # testing
 /coverage
 

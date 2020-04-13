@@ -4,24 +4,33 @@ import { withRouter } from 'react-router-dom';
 class ChatWindow extends Component {
   constructor(props){
     super(props);
-    this.state = {
+	  this.state = {
+		io: props.sio,
     	params: {}
     }
   }
   
-  componentDidMount = () => {
-  	console.log(this.props.match.params)
-  	
+  componentDidMount = async () => {
+	const { io } = this.state
+
+
+	  io.on('connect', function () {
+		  console.log('Connected...');
+		  io.emit('join', 'Hello World from client:rjs');
+	  });
+	  io.on('get-screenshot', function (data) {
+		  console.log(data);
+	  });
   }
 
-  render() {
+	render() {
     return (
 	    <div className="chat-window">
 	      <div className="fixed-header">
 	        <div className="navbar">
 	          <div className="user-details mr-auto">
 	            <div className="float-left user-img m-r-10">
-	              <a href="profile.html" title="Jennifer Robinson"><img src="assets/img/patient-thumb-02.jpg" alt="" className="w-40 rounded-circle"/><span className="status online"></span></a>
+	              <a href="profile.html" title="Jennifer Robinson"><img src="./assets/img/patient-thumb-02.jpg" alt="" className="w-40 rounded-circle"/><span className="status online"></span></a>
 	            </div>
 	            <div className="user-info float-left">
 	              <a href="profile.html"><span className="font-bold">Jennifer Robinson</span> <i className="typing-text">Typing...</i></a>
@@ -76,7 +85,7 @@ class ChatWindow extends Component {
 	                <div className="chat chat-left">
 	                  <div className="chat-avatar">
 	                    <a href="profile.html" className="avatar">
-	                    <img alt="Jennifer Robinson" src="assets/img/patient-thumb-02.jpg" className="img-fluid rounded-circle"/>
+	                    <img alt="Jennifer Robinson" src="./assets/img/patient-thumb-02.jpg" className="img-fluid rounded-circle"/>
 	                    </a>
 	                  </div>
 	                  <div className="chat-body">
